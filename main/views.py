@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
 
-# Create your 
 def home(request):
     Categories = category.objects.all()
     Services = services.objects.all()
