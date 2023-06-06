@@ -34,6 +34,12 @@
     <!--HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
     <!--WARNING: Respond.js doesn't work if you view the page via file://-->
     <!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+    <style>
+      .custom-heading{
+        font-size: 15px;
+        font-weight: bold;
+      }
+    </style>
   </head>
   <!--[if IE 7]><body class="ie7 lt-ie8 lt-ie9 lt-ie10"><![endif]-->
   <!--[if IE 8]><body class="ie8 lt-ie9 lt-ie10"><![endif]-->
@@ -82,54 +88,23 @@
                     <div class="mega-wrap">
                       <div class="mega-column">
                         <ul class="mega-item mega-features">
-                            {% ctg in Categories %}
-                                <li><a href="product-list.html">{{ctg.title}}</a></li>
+                            {% for ctg in Categories %}
+                                <li><a href="product-list.html" class="custom-heading">{{ctg.title}}</a></li>
                             {% endfor %}
                         </ul>
                       </div>
                       {% for ctg in Categories %}
                       <div class="mega-column">
-                        <h4 class="mega-heading">{{ctg.title}}</h4>
+                        <h4 class="custom-heading">{{ctg.title}}</h4>
                         <ul class="mega-item">
-                            {% for service in ctg.services %}
-                                <li><a href="product-list.html">All Shoes</a></li>
+                          
+                            {% for service in ctg.services.all %}
+                                <li><a href="product-list.html">{{ service.title }}</a></li>
                             {% endfor %}
+                                <!-- <li><a href="product-list.html">service</a></li> -->
                         </ul>
                       </div>
                       {% endfor %}
-                      <div class="mega-column">
-                        <h4 class="mega-heading">Sofa & Chair</h4>
-                        <ul class="mega-item">
-                          <li><a href="product-list.html">Compression & Nike Pro</a></li>
-                          <li><a href="product-list.html">Tops & T-Shirts</a></li>
-                          <li><a href="product-list.html">Polos</a></li>
-                          <li><a href="product-list.html">Hoodies & Sweatshirts</a></li>
-                          <li><a href="product-list.html">Jackets & Vests</a></li>
-                          <li><a href="product-list.html">Pants & Tights</a></li>
-                          <li><a href="product-list.html">Shorts</a></li>
-                        </ul>
-                      </div>
-                      <div class="mega-column">
-                        <h4 class="mega-heading">Cabinets & Chests</h4>
-                        <ul class="mega-item">
-                          <li><a href="product-list.html">Compression & Nike Pro</a></li>
-                          <li><a href="product-list.html">Tops & T-Shirts</a></li>
-                          <li><a href="product-list.html">Polos</a></li>
-                          <li><a href="product-list.html">Hoodies & Sweatshirts</a></li>
-                          <li><a href="product-list.html">Jackets & Vests</a></li>
-                          <li><a href="product-list.html">Pants & Tights</a></li>
-                          <li><a href="product-list.html">Shorts</a></li>
-                        </ul>
-                      </div>
-                      <div class="mega-column">
-                        <h4 class="mega-heading">Brand</h4>
-                        <ul class="mega-item">
-                          <li><a href="product-list.html">NIKE</a></li>
-                          <li><a href="product-list.html">Adidas</a></li>
-                          <li><a href="product-list.html">Dior</a></li>
-                          <li><a href="product-list.html">B&G</a></li>
-                        </ul>
-                      </div>
                     </div>
                   </div>
                 </li>

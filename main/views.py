@@ -10,3 +10,13 @@ def home(request):
     }
 
     return render(request, 'index.html', context)
+
+def shop(request):
+    Categories = category.objects.all()
+    Services = services.objects.all()
+    context = {
+        'Categories':Categories,
+        'Services':Services,
+    }
+    return render(request, 'product-list.html', context)
+    
