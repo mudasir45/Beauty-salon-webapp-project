@@ -17,7 +17,7 @@
     </div>
     <main class="ps-main ps-sidebar-layout">
       <div class="ps-content">
-        <div class="ps-collection mb-50"><a class="ps-collection__overlay" href="#"></a><img src="images/collection/product.jpg" alt=""></div>
+        <div class="ps-collection mb-50"><a class="ps-collection__overlay" href="#"></a><img src="{% static 'images/collection/product.jpg' %}" alt=""></div>
         <div class="ps-products-sort">
           <p>Show 1-12 of 35 result</p>
               <select class="ps-select" title="Default Sorting">
@@ -26,20 +26,164 @@
                 <option value="3">Option 3</option>
               </select>
         </div>
+        {% load custom_query %}
         <!-- 5 items per column-->
         <div class="ps-row">
+          {% for service in Services %}
+          <div class="ps-column">
+            <div class="ps-product">
+              <div class="ps-product__thumbnail">
+              {% if service.tag %}
+                <div class="ps-badge"><span>{{service.tag}}</span></div>
+              {% endif %}
+              
+              {% if service.discount %}
+              <div class="ps-badge ps-badge--sale"><span>-{{service.discount}}%</span></div><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="{% static 'images/product/Item-1.jpg' %}" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
+              {% endif %}
+                <div class="ps-product__content full">
+                  <div class="ps-product__variants">
+                    {% for image in service.service_image.all %}
+                    <div class="item"><img src="{{image.img.url}}" alt=""></div>
+                    {% endfor %}
+                  </div>
+                      <select class="ps-rating">
+                        <option value="1">1</option>
+                        <option value="1">2</option>
+                        <option value="1">3</option>
+                        <option value="1">4</option>
+                        <option value="2">5</option>
+                      </select>
+                      <a class="ps-product__title" href="product-detail-2.html">{{service.title}}</a>
+                  <div class="ps-product__categories"><a href="product-listing.html">{{service.cervice_category.title}}</a></div>
+                  <p class="ps-product__price">
+                    {% if service.discount %}
+                      <del>${{service.price}}</del>£120
+                    {% endif %}
+                  </p><a class="ps-btn ps-btn--sm ps-modal-open" href="#modal-confirm">Add to cart</a>
+                  <p class="ps-product__feature"><i class="furniture-delivery-truck-2"></i>Free Shipping in 24 hours</p>
+                </div>
+              </div>
+              <div class="ps-product__content">
+                    <select class="ps-rating">
+                      <option value="1">1</option>
+                      <option value="1">2</option>
+                      <option value="1">3</option>
+                      <option value="1">4</option>
+                      <option value="2">5</option>
+                    </select><a class="ps-product__title" href="product-detail-2.html">VEDBO Version 2018</a>
+                <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
+                <p class="ps-product__price">
+                  <del>£220</del>£120
+                </p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          <div class="ps-column">
+            <div class="ps-product">
+              <div class="ps-product__thumbnail"><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="{% static 'images/product/Item-2.jpg' %}" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
+                <div class="ps-product__content full">
+                  <div class="ps-product__variants">
+                    <div class="item"><img src="{% static 'images/product/variants/variant-1.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-2.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-3.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-4.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-5.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-2.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-3.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-4.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-5.jpg' %}" alt=""></div>
+                  </div>
+                      <select class="ps-rating">
+                        <option value="1">1</option>
+                        <option value="1">2</option>
+                        <option value="1">3</option>
+                        <option value="1">4</option>
+                        <option value="2">5</option>
+                      </select><a class="ps-product__title" href="product-detail-2.html">VEDBO Version 2018</a>
+                  <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
+                  <p class="ps-product__price">
+                    <del>£220</del>£120
+                  </p><a class="ps-btn ps-btn--sm ps-modal-open" href="#modal-confirm">Add to cart</a>
+                  <p class="ps-product__feature"><i class="furniture-delivery-truck-2"></i>Free Shipping in 24 hours</p>
+                </div>
+              </div>
+              <div class="ps-product__content">
+                    <select class="ps-rating">
+                      <option value="1">1</option>
+                      <option value="1">2</option>
+                      <option value="1">3</option>
+                      <option value="1">4</option>
+                      <option value="2">5</option>
+                    </select><a class="ps-product__title" href="product-detail-2.html">VEDBO Version 2018</a>
+                <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
+                <p class="ps-product__price">
+                  <del>£220</del>£120
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="ps-column">
+            <div class="ps-product">
+              <div class="ps-product__thumbnail">
+                <div class="ps-badge ps-badge--sale"><span>-35%</span></div><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="{% static 'images/product/Item-3.jpg' %}" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
+                <div class="ps-product__content full">
+                  <div class="ps-product__variants">
+                    <div class="item"><img src="{% static 'images/product/variants/variant-1.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-2.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-3.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-4.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-5.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-2.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-3.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-4.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-5.jpg' %}" alt=""></div>
+                  </div>
+                      <select class="ps-rating">
+                        <option value="1">1</option>
+                        <option value="1">2</option>
+                        <option value="1">3</option>
+                        <option value="1">4</option>
+                        <option value="2">5</option>
+                      </select><a class="ps-product__title" href="product-detail-2.html">VEDBO Version 2018</a>
+                  <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
+                  <p class="ps-product__price">
+                    <del>£220</del>£120
+                  </p><a class="ps-btn ps-btn--sm ps-modal-open" href="#modal-confirm">Add to cart</a>
+                  <p class="ps-product__feature"><i class="furniture-delivery-truck-2"></i>Free Shipping in 24 hours</p>
+                </div>
+              </div>
+              <div class="ps-product__content">
+                    <select class="ps-rating">
+                      <option value="1">1</option>
+                      <option value="1">2</option>
+                      <option value="1">3</option>
+                      <option value="1">4</option>
+                      <option value="2">5</option>
+                    </select><a class="ps-product__title" href="product-detail-2.html">VEDBO Version 2018</a>
+                <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
+                <p class="ps-product__price">
+                  <del>£220</del>£120
+                </p>
+              </div>
+            </div>
+          </div>
           <div class="ps-column">
             <div class="ps-product">
               <div class="ps-product__thumbnail">
                 <div class="ps-badge"><span>New</span></div>
-                <div class="ps-badge ps-badge--sale"><span>-35%</span></div><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="images/product/Item-1.jpg" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
+                <div class="ps-badge ps-badge--sale"><span>-35%</span></div><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="{% static 'images/product/Item-4.jpg' %}" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
                 <div class="ps-product__content full">
                   <div class="ps-product__variants">
-                    <div class="item"><img src="images/product/variants/variant-1.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-1.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-2.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-3.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-4.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-5.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-2.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-3.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-4.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-5.jpg' %}" alt=""></div>
                   </div>
                       <select class="ps-rating">
                         <option value="1">1</option>
@@ -72,18 +216,18 @@
           </div>
           <div class="ps-column">
             <div class="ps-product">
-              <div class="ps-product__thumbnail"><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="images/product/Item-2.jpg" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
+              <div class="ps-product__thumbnail"><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="{% static 'images/product/Item-5.jpg' %}" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
                 <div class="ps-product__content full">
                   <div class="ps-product__variants">
-                    <div class="item"><img src="images/product/variants/variant-1.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-1.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-2.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-3.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-4.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-5.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-2.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-3.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-4.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-5.jpg' %}" alt=""></div>
                   </div>
                       <select class="ps-rating">
                         <option value="1">1</option>
@@ -116,19 +260,18 @@
           </div>
           <div class="ps-column">
             <div class="ps-product">
-              <div class="ps-product__thumbnail">
-                <div class="ps-badge ps-badge--sale"><span>-35%</span></div><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="images/product/Item-3.jpg" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
+              <div class="ps-product__thumbnail"><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="{% static 'images/product/Item-6.jpg' %}" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
                 <div class="ps-product__content full">
                   <div class="ps-product__variants">
-                    <div class="item"><img src="images/product/variants/variant-1.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-1.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-2.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-3.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-4.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-5.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-2.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-3.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-4.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-5.jpg' %}" alt=""></div>
                   </div>
                       <select class="ps-rating">
                         <option value="1">1</option>
@@ -161,20 +304,18 @@
           </div>
           <div class="ps-column">
             <div class="ps-product">
-              <div class="ps-product__thumbnail">
-                <div class="ps-badge"><span>New</span></div>
-                <div class="ps-badge ps-badge--sale"><span>-35%</span></div><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="images/product/Item-4.jpg" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
+              <div class="ps-product__thumbnail"><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="{% static 'images/product/Item-7.jpg' %}" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
                 <div class="ps-product__content full">
                   <div class="ps-product__variants">
-                    <div class="item"><img src="images/product/variants/variant-1.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-1.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-2.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-3.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-4.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-5.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-2.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-3.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-4.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-5.jpg' %}" alt=""></div>
                   </div>
                       <select class="ps-rating">
                         <option value="1">1</option>
@@ -207,18 +348,18 @@
           </div>
           <div class="ps-column">
             <div class="ps-product">
-              <div class="ps-product__thumbnail"><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="images/product/Item-5.jpg" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
+              <div class="ps-product__thumbnail"><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="{% static 'images/product/Item-8.jpg' %}" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
                 <div class="ps-product__content full">
                   <div class="ps-product__variants">
-                    <div class="item"><img src="images/product/variants/variant-1.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-1.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-2.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-3.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-4.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-5.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-2.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-3.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-4.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-5.jpg' %}" alt=""></div>
                   </div>
                       <select class="ps-rating">
                         <option value="1">1</option>
@@ -251,18 +392,18 @@
           </div>
           <div class="ps-column">
             <div class="ps-product">
-              <div class="ps-product__thumbnail"><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="images/product/Item-6.jpg" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
+              <div class="ps-product__thumbnail"><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="{% static 'images/product/Item-9.jpg' %}" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
                 <div class="ps-product__content full">
                   <div class="ps-product__variants">
-                    <div class="item"><img src="images/product/variants/variant-1.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-1.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-2.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-3.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-4.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-5.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-2.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-3.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-4.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-5.jpg' %}" alt=""></div>
                   </div>
                       <select class="ps-rating">
                         <option value="1">1</option>
@@ -295,150 +436,18 @@
           </div>
           <div class="ps-column">
             <div class="ps-product">
-              <div class="ps-product__thumbnail"><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="images/product/Item-7.jpg" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
+              <div class="ps-product__thumbnail"><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="{% static 'images/product/Item-10.jpg' %}" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
                 <div class="ps-product__content full">
                   <div class="ps-product__variants">
-                    <div class="item"><img src="images/product/variants/variant-1.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                  </div>
-                      <select class="ps-rating">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option>
-                      </select><a class="ps-product__title" href="product-detail-2.html">VEDBO Version 2018</a>
-                  <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                  <p class="ps-product__price">
-                    <del>£220</del>£120
-                  </p><a class="ps-btn ps-btn--sm ps-modal-open" href="#modal-confirm">Add to cart</a>
-                  <p class="ps-product__feature"><i class="furniture-delivery-truck-2"></i>Free Shipping in 24 hours</p>
-                </div>
-              </div>
-              <div class="ps-product__content">
-                    <select class="ps-rating">
-                      <option value="1">1</option>
-                      <option value="1">2</option>
-                      <option value="1">3</option>
-                      <option value="1">4</option>
-                      <option value="2">5</option>
-                    </select><a class="ps-product__title" href="product-detail-2.html">VEDBO Version 2018</a>
-                <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                <p class="ps-product__price">
-                  <del>£220</del>£120
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="ps-column">
-            <div class="ps-product">
-              <div class="ps-product__thumbnail"><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="images/product/Item-8.jpg" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
-                <div class="ps-product__content full">
-                  <div class="ps-product__variants">
-                    <div class="item"><img src="images/product/variants/variant-1.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                  </div>
-                      <select class="ps-rating">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option>
-                      </select><a class="ps-product__title" href="product-detail-2.html">VEDBO Version 2018</a>
-                  <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                  <p class="ps-product__price">
-                    <del>£220</del>£120
-                  </p><a class="ps-btn ps-btn--sm ps-modal-open" href="#modal-confirm">Add to cart</a>
-                  <p class="ps-product__feature"><i class="furniture-delivery-truck-2"></i>Free Shipping in 24 hours</p>
-                </div>
-              </div>
-              <div class="ps-product__content">
-                    <select class="ps-rating">
-                      <option value="1">1</option>
-                      <option value="1">2</option>
-                      <option value="1">3</option>
-                      <option value="1">4</option>
-                      <option value="2">5</option>
-                    </select><a class="ps-product__title" href="product-detail-2.html">VEDBO Version 2018</a>
-                <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                <p class="ps-product__price">
-                  <del>£220</del>£120
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="ps-column">
-            <div class="ps-product">
-              <div class="ps-product__thumbnail"><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="images/product/Item-9.jpg" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
-                <div class="ps-product__content full">
-                  <div class="ps-product__variants">
-                    <div class="item"><img src="images/product/variants/variant-1.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                  </div>
-                      <select class="ps-rating">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option>
-                      </select><a class="ps-product__title" href="product-detail-2.html">VEDBO Version 2018</a>
-                  <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                  <p class="ps-product__price">
-                    <del>£220</del>£120
-                  </p><a class="ps-btn ps-btn--sm ps-modal-open" href="#modal-confirm">Add to cart</a>
-                  <p class="ps-product__feature"><i class="furniture-delivery-truck-2"></i>Free Shipping in 24 hours</p>
-                </div>
-              </div>
-              <div class="ps-product__content">
-                    <select class="ps-rating">
-                      <option value="1">1</option>
-                      <option value="1">2</option>
-                      <option value="1">3</option>
-                      <option value="1">4</option>
-                      <option value="2">5</option>
-                    </select><a class="ps-product__title" href="product-detail-2.html">VEDBO Version 2018</a>
-                <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                <p class="ps-product__price">
-                  <del>£220</del>£120
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="ps-column">
-            <div class="ps-product">
-              <div class="ps-product__thumbnail"><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="images/product/Item-10.jpg" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
-                <div class="ps-product__content full">
-                  <div class="ps-product__variants">
-                    <div class="item"><img src="images/product/variants/variant-1.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-1.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-2.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-3.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-4.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-5.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-2.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-3.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-4.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/variants/variant-5.jpg' %}" alt=""></div>
                   </div>
                       <select class="ps-rating">
                         <option value="1">1</option>
@@ -511,13 +520,13 @@
           </ul>
         </aside>
         <aside class="widget widget_sidebar widget_ads">
-          <h3 class="widget-title">Ads banner</h3><a href="#"><img src="images/widget-ads.jpg" alt=""></a>
+          <h3 class="widget-title">Ads banner</h3><a href="#"><img src="{% static 'images/widget-ads.jpg' %}" alt=""></a>
         </aside>
       </aside>
     </main>
     <div class="ps-partners">
       <div class="ps-container">
-        <div class="ps-slider--partners owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="50" data-owl-nav="false" data-owl-dots="false" data-owl-item="7" data-owl-item-xs="3" data-owl-item-sm="5" data-owl-item-md="6" data-owl-item-lg="7" data-owl-duration="1000" data-owl-mousedrag="on"><img src="images/partner/1.png" alt=""><img src="images/partner/2.png" alt=""><img src="images/partner/3.png" alt=""><img src="images/partner/4.png" alt=""><img src="images/partner/5.png" alt=""><img src="images/partner/6.png" alt=""><img src="images/partner/7.png" alt=""></div>
+        <div class="ps-slider--partners owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="50" data-owl-nav="false" data-owl-dots="false" data-owl-item="7" data-owl-item-xs="3" data-owl-item-sm="5" data-owl-item-md="6" data-owl-item-lg="7" data-owl-duration="1000" data-owl-mousedrag="on"><img src="{% static 'images/partner/1.png' %}" alt=""><img src="{% static 'images/partner/2.png' %}" alt=""><img src="{% static 'images/partner/3.png' %}" alt=""><img src="{% static 'images/partner/4.png' %}" alt=""><img src="{% static 'images/partner/5.png' %}" alt=""><img src="{% static 'images/partner/6.png' %}" alt=""><img src="{% static 'images/partner/7.png' %}" alt=""></div>
       </div>
     </div>
     <div class="ps-modal" id="modal-confirm">
@@ -526,11 +535,11 @@
           <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                   <div class="ps-slider--center ps-slider--inside owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="false" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on">
-                    <div class="item"><img src="images/product/detail/large-1.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/detail/large-2.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/detail/large-3.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/detail/large-4.jpg" alt=""></div>
-                    <div class="item"><img src="images/product/detail/large-5.jpg" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/detail/large-1.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/detail/large-2.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/detail/large-3.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/detail/large-4.jpg' %}" alt=""></div>
+                    <div class="item"><img src="{% static 'images/product/detail/large-5.jpg' %}" alt=""></div>
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
@@ -555,12 +564,12 @@
                     </div>
                     <h5 class="ps-block__price">Price <span> £115</span></h5>
                     <div class="ps-block__btns"><a class="ps-btn" href="#">Continue Shopping</a><a class="ps-btn ps-btn--blue" href="checkout.html">Go to checkout</a></div>
-                    <div class="ps-block__checkout"><img src="images/payment.png" alt=""></div>
+                    <div class="ps-block__checkout"><img src="{% static 'images/payment.png' %}" alt=""></div>
                   </div>
                 </div>
           </div>
           <div class="ps-block__footer">
-            <p><img src="images/market.svg" alt=""> There are <strong>5</strong> item in your cart</p>
+            <p><img src="{% static 'images/market.svg' %}" alt=""> There are <strong>5</strong> item in your cart</p>
             <h5>£715</h5>
           </div>
         </div>

@@ -6,6 +6,7 @@ class category(models.Model):
     title = models.CharField(max_length=50, null=True, blank=True)
     discription = models.TextField(max_length=50, null=True, blank=True)
     services = models.ManyToManyField('services', blank=True)
+    img = models.ImageField(upload_to="service", null=True, blank=True)
     
     def __str__(self) -> str:
         return self.title
@@ -17,6 +18,7 @@ class services(models.Model):
     service_ctg = models.ForeignKey(category, related_name='cervice_category', on_delete=models.CASCADE, null=True, blank=True)
     price = models.IntegerField(null=True, blank=True)
     discount = models.IntegerField(null=True, blank=True)
+    img = models.ImageField(upload_to="service", null=True, blank=True)
     tag = models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self) -> str:
@@ -32,3 +34,6 @@ class order(models.Model):
     def __str__(self) -> str:
         return f'{self.user.first_name} - {self.service.title}'
 
+class serviceImages(models.Model):
+    service = models.ForeignKey(services, on_delete=models.CASCADE, related_name="service_image")
+    img = models.ImageField(upload_to="service")

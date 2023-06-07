@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 
     'main',
     'accounts',
+
+    'main.templateTags',
 ]
 
 MIDDLEWARE = [
