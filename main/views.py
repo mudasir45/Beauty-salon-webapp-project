@@ -20,3 +20,22 @@ def shop(request):
     }
     return render(request, 'product-list.html', context)
     
+def CategoryFilter(request, id):
+    Category = category.objects.get(id = id)
+    Categories = category.objects.all()
+    Services = services.objects.filter(service_ctg = Category)
+    context = {
+        'Categories':Categories,
+        'Services':Services,
+        'ctg_id':id,
+    }
+    return render(request, 'product-list.html', context)
+
+def ServiceDetails(request, id):
+    Service = services.objects.get(id = id)
+    context = {
+        'Service':Service,
+    }
+    return render(request, 'product-detail.html', context)
+
+
