@@ -33,8 +33,10 @@ def CategoryFilter(request, id):
 
 def ServiceDetails(request, id):
     Service = services.objects.get(id = id)
+    images = serviceImages.objects.filter(service = Service)
     context = {
         'Service':Service,
+        'images':images,
     }
     return render(request, 'product-detail.html', context)
 
