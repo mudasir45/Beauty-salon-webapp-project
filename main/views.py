@@ -42,8 +42,21 @@ def ServiceDetails(request, id):
 
 def CheckOut(request, id):
     Service = services.objects.get(id = id)
+    current_user = request.user
+    user_profile = profile.objects.get(user = current_user)
+    status = False
+    price = Service.price
+    dicount = (price*30)/100
+    dicounted_price = price-dicount
+    if user_profile.is_employee:
+        status = True
+        dicount = (price*40)/100
+        dicounted_price = price-dicount
+
     context = {
         'Service':Service,
+        'status':status,
+        'dicounted_price':dicounted_price,
     }
     return render(request, 'checkout.html', context)
 
