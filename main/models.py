@@ -24,16 +24,7 @@ class services(models.Model):
     def __str__(self) -> str:
         return self.title
     
-class order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    service = models.ForeignKey(services, on_delete=models.CASCADE, null=True, blank=True)
-    status = models.CharField(max_length=50, null=True, blank=True)
-    discount = models.IntegerField(null=True, blank=True)
-    date = models.DateField(auto_now_add=True)
-    time = models.TimeField(auto_now_add=True)
 
-    def __str__(self) -> str:
-        return f'{self.user.first_name} - {self.service.title}'
 
 class serviceImages(models.Model):
     service = models.ForeignKey(services, on_delete=models.CASCADE, related_name="service_image")
@@ -50,3 +41,15 @@ class profile(models.Model):
     def __str__(self):
         return f'{self.user.first_name} -- employee = {self.is_employee}'
     
+
+class order(models.Model):
+    profile = models.ForeignKey(profile, on_delete=models.CASCADE, null=True, blank=True)
+    service = models.ForeignKey(services, on_delete=models.CASCADE, null=True, blank=True)
+    status = models.CharField(max_length=50, null=True, blank=True)
+    discount = models.IntegerField(null=True, blank=True)
+    note = models.TextField(null=True, blank=True)
+    date = models.DateField(auto_now_add=True)
+    time = models.TimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f'{self.profile.user.first_name} - {self.service.title}'

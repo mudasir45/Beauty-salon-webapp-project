@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import *
 
 def home(request):
@@ -52,6 +53,21 @@ def CheckOut(request, id):
         status = True
         dicount = (price*40)/100
         dicounted_price = price-dicount
+    if request.method == 'POST':
+        notes = request.POST.get('notes')
+        date = request.POST.get('date')
+        time = request.POST.get('time')
+        place_oder = order.objects.create(
+            profile = user_profile, 
+            service = Service,
+            status = 'pending',
+            note = notes,
+            date = date,
+            time = time
+        )
+        place_oder.save()
+        messages.success(request, "Order hase been placed successfully!")
+        return redirect('CheckOut', id)
 
     context = {
         'Service':Service,

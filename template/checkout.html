@@ -16,8 +16,9 @@
     </div>
     <div class="ps-checkout">
       <div class="ps-container">
-        <form class="ps-form--checkout" action="http://warethemes.com/html/flourish/do_action" method="post">
           <div class="row">
+            <form action="{% url 'CheckOut' Service.id %}" method="post">
+              {% csrf_token %}
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
                   <div class="ps-checkout__billing">
                     <h3>Billing Details</h3>
@@ -25,21 +26,21 @@
                           <label>Select Date<span>*</span>
                           </label>
                           <div class="form-group__content">
-                            <input class="form-control" type="date">
+                            <input class="form-control" type="date" name="date">
                           </div>
                         </div>
                         <div class="form-group form-group--inline">
                           <label>Time<span>*</span>
                           </label>
                           <div class="form-group__content">
-                            <input class="form-control" type="time">
+                            <input class="form-control" type="time" name="time">
                           </div>
                         </div>
 
                     <h3 class="mt-40"> Addition information</h3>
                     <div class="form-group form-group--inline textarea">
                       <label>Order Notes</label>
-                      <textarea class="form-control" rows="7" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                      <textarea class="form-control" name="notes" rows="7" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                     </div>
                   </div>
                 </div>
@@ -92,11 +93,14 @@
                           <label for="rdo02">Paypal</label>
                         </div>
                         <ul class="ps-payment-method">
-                          <li><a href="#"><img src="images/payment/1.png" alt=""></a></li>
-                          <li><a href="#"><img src="images/payment/2.png" alt=""></a></li>
-                          <li><a href="#"><img src="images/payment/3.png" alt=""></a></li>
+                          <li><a href="#"><img src="{% static 'images/payment/1.png' %}" alt=""></a></li>
+                          <li><a href="#"><img src="{% static 'images/payment/2.png' %}" alt=""></a></li>
+                          <li><a href="#"><img src="{% static 'images/payment/3.png' %}" alt=""></a></li>
                         </ul>
-                        <button class="ps-btn ps-btn--fullwidth">Place Order</button>
+                        
+                          <input type="hidden" name="service_id" value="{{service.id}}">
+                          <button type="submit" class="ps-btn ps-btn--fullwidth">Place Order</button>
+                        </form>
                       </div>
                     </footer>
                   </div>
@@ -106,7 +110,6 @@
                   </div>
                 </div>
           </div>
-        </form>
       </div>
     </div>
     <div class="ps-partners">
