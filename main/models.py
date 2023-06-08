@@ -28,6 +28,7 @@ class order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     service = models.ForeignKey(services, on_delete=models.CASCADE, null=True, blank=True)
     status = models.CharField(max_length=50, null=True, blank=True)
+    discount = models.IntegerField(null=True, blank=True)
     date = models.DateField(auto_now_add=True)
     time = models.TimeField(auto_now_add=True)
 
@@ -37,3 +38,15 @@ class order(models.Model):
 class serviceImages(models.Model):
     service = models.ForeignKey(services, on_delete=models.CASCADE, related_name="service_image")
     img = models.ImageField(upload_to="service")
+
+
+class profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    CNIC = models.IntegerField(null=True, blank=True)
+    phone = models.IntegerField(null=True, blank=True)
+    adress = models.TextField(null=True, blank=True)
+    is_employee = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.user.first_name} -- employee = {self.is_employee}'
+    

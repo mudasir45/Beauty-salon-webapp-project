@@ -40,4 +40,12 @@ def ServiceDetails(request, id):
     }
     return render(request, 'product-detail.html', context)
 
+def CheckOut(request, id):
+    Service = services.objects.get(id = id)
+    context = {
+        'Service':Service,
+    }
+    return render(request, 'checkout.html', context)
+
+
 
