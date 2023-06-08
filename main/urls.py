@@ -7,4 +7,5 @@ urlpatterns = [
     path('CategoryFilter/<int:id>', views.CategoryFilter, name='CategoryFilter' ),
     path('ServiceDetails/<int:id>', views.ServiceDetails, name='ServiceDetails' ),
     path('CheckOut/<int:id>', views.CheckOut, name='CheckOut' ),
+    
 ]
