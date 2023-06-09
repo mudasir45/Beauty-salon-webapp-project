@@ -36,7 +36,7 @@
               {% if service.tag %}
                 <div class="ps-badge"><span>{{service.tag}}</span></div>
               {% endif %}
-              <a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="{{service.img.url}}" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
+              <a class="ps-product__favorite" href="{% url 'ServiceDetails' service.id %}"><i class="furniture-heart"></i></a><img src="{{service.img.url}}" alt=""><a class="ps-product__overlay" href="{% url 'ServiceDetails' service.id %}"></a>
                 <div class="ps-product__content full">
                   <div class="ps-product__variants">
                     {% for image in service.service_image.all %}
@@ -50,8 +50,8 @@
                         <option value="1">4</option>
                         <option value="2">5</option>
                       </select>
-                      <a class="ps-product__title" href="product-detail-2.html">{{service.title}}</a>
-                  <div class="ps-product__categories"><a href="product-listing.html">{{service.service_ctg.title}}</a></div>
+                      <a class="ps-product__title" href="{% url 'ServiceDetails' service.id %}">{{service.title}}</a>
+                  <div class="ps-product__categories"><a href="{% url 'ServiceDetails' service.id %}">{{service.service_ctg.title}}</a></div>
                   <p class="ps-product__price">
                       <!-- <del>$220</del>£120 -->
                           ${{service.price}}
@@ -66,8 +66,8 @@
                       <option value="1">3</option>
                       <option value="1">4</option>
                       <option value="2">5</option>
-                    </select><a class="ps-product__title" href="product-detail-2.html">{{service.title}}</a>
-                <div class="ps-product__categories"><a href="product-listing.html">{{service.service_ctg.title}}</a></div>
+                    </select><a class="ps-product__title" href="{% url 'ServiceDetails' service.id %}">{{service.title}}</a>
+                <div class="ps-product__categories"><a href="{% url 'ServiceDetails' service.id %}">{{service.service_ctg.title}}</a></div>
                 <p class="ps-product__price">
                   <!-- <del>£220</del>£120 -->
                   ${{service.price}}

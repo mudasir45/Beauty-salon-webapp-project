@@ -101,7 +101,7 @@
                         <ul class="mega-item">
                           
                             {% for service in ctg.services.all %}
-                                <li><a href="product-list.html">{{ service.title }}</a></li>
+                                <li><a href="{% url 'shop' %}">{{ service.title }}</a></li>
                             {% endfor %}
                                 <!-- <li><a href="product-list.html">service</a></li> -->
                         </ul>

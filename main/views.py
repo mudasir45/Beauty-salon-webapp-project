@@ -33,15 +33,21 @@ def CategoryFilter(request, id):
     return render(request, 'product-list.html', context)
 
 def ServiceDetails(request, id):
+    Categories = category.objects.all()
+    Services = services.objects.all()
     Service = services.objects.get(id = id)
     images = serviceImages.objects.filter(service = Service)
     context = {
         'Service':Service,
         'images':images,
+        'Categories':Categories,
+        'Services':Services,
     }
     return render(request, 'product-detail.html', context)
 
 def CheckOut(request, id):
+    Categories = category.objects.all()
+    Services = services.objects.all()
     Service = services.objects.get(id = id)
     current_user = request.user
     user_profile = profile.objects.get(user = current_user)
@@ -73,6 +79,8 @@ def CheckOut(request, id):
         'Service':Service,
         'status':status,
         'dicounted_price':dicounted_price,
+        'Categories':Categories,
+        'Services':Services,
     }
     return render(request, 'checkout.html', context)
 
