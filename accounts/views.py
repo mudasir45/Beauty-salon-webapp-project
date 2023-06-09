@@ -19,8 +19,8 @@ def user_login(request):
             return redirect('home')
         else:
             messages.error(request, "Invalid Credentials")
-            return redirect(user_login)
-    return render(request, 'index.html')
+            return redirect('user_login')
+    return render(request, 'login.html')
 
 def user_SignUp(request):
     if request.method == "POST":
@@ -50,7 +50,7 @@ def user_SignUp(request):
         if status == "employee":
             user_porfile.is_employee = True
         user_porfile.save()
-        
+
         messages.success(request, "Registration successfull!")
         return redirect('user_login')        
-    return render(request, 'login_Register.html')
+    return render(request, 'Register.html')
