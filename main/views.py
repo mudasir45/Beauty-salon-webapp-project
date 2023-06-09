@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .models import *
 
 def home(request):
@@ -12,6 +13,7 @@ def home(request):
 
     return render(request, 'index.html', context)
 
+@login_required
 def shop(request):
     Categories = category.objects.all()
     Services = services.objects.all()
@@ -21,6 +23,7 @@ def shop(request):
     }
     return render(request, 'product-list.html', context)
     
+@login_required
 def CategoryFilter(request, id):
     Category = category.objects.get(id = id)
     Categories = category.objects.all()
@@ -32,6 +35,7 @@ def CategoryFilter(request, id):
     }
     return render(request, 'product-list.html', context)
 
+@login_required
 def ServiceDetails(request, id):
     Categories = category.objects.all()
     Services = services.objects.all()
@@ -45,6 +49,7 @@ def ServiceDetails(request, id):
     }
     return render(request, 'product-detail.html', context)
 
+@login_required
 def CheckOut(request, id):
     Categories = category.objects.all()
     Services = services.objects.all()

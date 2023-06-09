@@ -15,12 +15,15 @@ def user_login(request):
         user = authenticate(username = username, password = password)
         if user is not None:
             login(request, user)
-            messages.success(request, "Login Successfull")
             return redirect('home')
         else:
             messages.error(request, "Invalid Credentials")
             return redirect('user_login')
     return render(request, 'login.html')
+ 
+def Userlogout(request):
+    logout(request)
+    return redirect('home')
 
 def user_SignUp(request):
     if request.method == "POST":
