@@ -57,11 +57,13 @@ def CheckOut(request, id):
     current_user = request.user
     user_profile = profile.objects.get(user = current_user)
     status = False
+    status_text = "User"
     price = Service.price
     dicount = (price*30)/100
     dicounted_price = price-dicount
     if user_profile.is_employee:
         status = True
+        status_text = "Employee"
         dicount = (price*40)/100
         dicounted_price = price-dicount
     if request.method == 'POST':
@@ -78,7 +80,7 @@ def CheckOut(request, id):
         )
         place_oder.save()
         messages.success(request, "Order hase been placed successfully!")
-        return redirect('CheckOut', id)
+        return redirect('cart')
 
     context = {
         'Service':Service,
@@ -86,8 +88,20 @@ def CheckOut(request, id):
         'dicounted_price':dicounted_price,
         'Categories':Categories,
         'Services':Services,
+        'status_text':status_text,
     }
     return render(request, 'checkout.html', context)
 
-
+def cart(request):
+    Categories = category.objects.all()
+    Services = services.objects.all()
+    current_user = request.user
+    Profile = profile.objects.get(user = current_user)
+    Orders = order.objects.filter(profile = Profile)
+    context = {
+        'Orders':Orders,
+        'Categories':Categories,
+        'Services':Services,
+    }
+    return render(request, 'cart.html', context)
 
